@@ -1,0 +1,21 @@
+
+<section
+    class="card__container"
+    [ngStyle]="setPokemonCardColor()"
+>
+    <article class="card__pokemon" >
+        <span class="card__number"> #{{pokemon.id}}</span>
+        <header class="card__img-container">
+            <img [src]="pokemon.image" [title]="pokemon.name" [alt]="pokemon.name">
+        </header>
+        <div class="card__info">
+            
+            <h3 class="card__name" [title]="pokemon.name" >{{pokemon.name}}</h3>
+            <div class="card__wrapper">
+                <div class="icon card__icon" [ngStyle]="setPokemonTypeColor(type.type.name)" *ngFor="let type of pokemon.types">
+                    <img src="../../../../../../assets/icons/{{type.type.name}}.svg">
+                </div>
+            </div>
+        </div>
+    </article>
+</section>
