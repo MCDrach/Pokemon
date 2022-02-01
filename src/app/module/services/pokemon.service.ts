@@ -13,8 +13,8 @@ export class PokemonService {
     private http: HttpClient
   ) { }
 
-  getpokemons(offset: number=0){
-    return this.http.get(`${pokeApi}pokemon/?offset=${offset}&limit=32`);
+  getpokemons(offset: number=0,limit: number=0){
+    return this.http.get(`${pokeApi}pokemon/?offset=${offset}&limit=${limit}`);
            /* .pipe(
                 map((data: any) => 
                     data.results 
