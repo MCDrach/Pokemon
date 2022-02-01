@@ -1,6 +1,7 @@
 import {  Component, HostListener, OnInit } from '@angular/core';
 import { PokemonService } from '../services/pokemon.service';
 import { pokemon } from 'src/app/shared/models/pokemon.model';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -11,6 +12,7 @@ export class PokemonListComponent implements OnInit {
 
   listaPokemon: pokemon[] = [];
   offSet= 0;
+  limit!: number;
   flat = true;
 
   constructor(
@@ -27,12 +29,16 @@ export class PokemonListComponent implements OnInit {
     
   }
   obtenerListaPokemones(){
-    this.pokemonService.getpokemons(this.offSet).subscribe(
+    this.pokemonService.getpokemons(this.offSet)
+    .pipe(finalize(() => { this.flat = true}))
+    .subscribe(
       (pokemons: any) => {
+        console.log('subscribe');
+        this.limit = pokemons.
         pokemons.results.forEach((data: any) => {
           this.obtenerPokemon(data.url);
         });
-        this.flat = true;
+        
       }
     );
   }
@@ -41,12 +47,6 @@ export class PokemonListComponent implements OnInit {
      
     this.pokemonService.getpokemonById(url).subscribe(
       x => { 
-        let pokemon = this.listaPokemon[this.listaPokemon.length-1];
-        
-        console.log('pokemon',pokemon);
-        if(pokemon?.id < x.id){
-          debugger;
-        }
         this.listaPokemon.splice((x.id-1),0,x);
       }
     );
