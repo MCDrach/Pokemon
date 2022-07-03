@@ -2,6 +2,8 @@
 <section
     class="card__container"
     [ngStyle]="setPokemonCardColor()"
+    @fade
+    routerLink="/pokemon/{{pokemon.id}}"
 >
     <article class="card__pokemon" >
         <span class="card__number"> #{{pokemon.id}}</span>
@@ -13,7 +15,7 @@
             <h3 class="card__name" [title]="pokemon.name" >{{pokemon.name}}</h3>
             <div class="card__wrapper">
                 <div class="icon card__icon" [ngStyle]="setPokemonTypeColor(type.type.name)" *ngFor="let type of pokemon.types">
-                    <img src="../../../../../../assets/icons/{{type.type.name}}.svg">
+                    <img src="../../../../../../assets/icons/{{type.type.name}}.svg" [alt]="type.type.name" [title]="type.type.name">
                 </div>
             </div>
         </div>

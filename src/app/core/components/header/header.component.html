@@ -1,0 +1,17 @@
+<nav class="navbar">
+    <ul>
+        <li>
+            <div class="search__container" style="max-width: 40vw">
+                <input
+                  type="text"
+                  placeholder="search..."
+                  alt="search"
+                  class="search__input"
+                  (keyup)="inputText($event.target)"
+                />
+            </div>
+        </li>
+    </ul>
+    <a data-toggle="modal" data-target="#aboutModal" class="navbar-brand" #menu>PokéDex</a>
+</nav>
+    

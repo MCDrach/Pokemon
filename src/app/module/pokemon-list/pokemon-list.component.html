@@ -1,4 +1,5 @@
+
 <div class="cards" (window:scroll)="scroll($event)">
-    <app-pokemon-card *ngFor="let pokemon of listaPokemon" [pokemon]="pokemon"></app-pokemon-card>
+    <app-pokemon-card *ngFor="let pokemon of  inputSearch ? listaPokemonSearch : listaPokemon" [pokemon]="pokemon"></app-pokemon-card>
 </div>
 

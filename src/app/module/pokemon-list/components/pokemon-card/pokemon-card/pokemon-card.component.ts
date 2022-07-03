@@ -1,11 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TypesEnum } from 'src/app/shared/emun/color.enum';
 import { pokemon } from 'src/app/shared/models/pokemon.model';
+import { fade } from '../../../../../shared/animations/fade';
 
 @Component({
   selector: 'app-pokemon-card',
   templateUrl: './pokemon-card.component.html',
-  styleUrls: ['./pokemon-card.component.scss']
+  styleUrls: ['./pokemon-card.component.scss'],
+  animations:[fade]
 })
 export class PokemonCardComponent implements OnInit {
 
@@ -35,7 +37,7 @@ export class PokemonCardComponent implements OnInit {
     color =   typecolor ?? 'white';
     const style = {
       background: color,
-      'box-shadow': '0 4px 8px 0 rgba(0, 0, 0, 0.2)',
+      'box-shadow': `0 4px 8px 0 rgba(0, 0, 0, 0.2)`,
     };
     return style;
   }

@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
+import { map, Observable, Subject } from 'rxjs';
 import { pokemon } from 'src/app/shared/models/pokemon.model';
 import { environment } from '../../../environments/environment';
 const {pokeApi } = environment
@@ -8,12 +8,12 @@ const {pokeApi } = environment
   providedIn: 'root'
 })
 export class PokemonService {
-
+  debounceSearch = new Subject<any>();
   constructor(
     private http: HttpClient
   ) { }
 
-  getpokemons(offset: number=0,limit: number=0){
+  getpokemons(offset: number,limit: number){
     return this.http.get(`${pokeApi}pokemon/?offset=${offset}&limit=${limit}`);
            /* .pipe(
                 map((data: any) => 
@@ -31,12 +31,15 @@ export class PokemonService {
                       id: data['id'],
                       image : data['sprites']['other']['home'].front_default,
                       name: data['name'],
-                      types: data['types']
+                      types: data['types'],
+                      height: data['height'],
+                      weight: data['weight'],
+                      Abilities: data['Abilities']
                     }
                   })
                 );
   }
-
+/*
   setpokemon(data: any): pokemon{
   return  {
     id: data['id'],
@@ -44,6 +47,6 @@ export class PokemonService {
     name: data['name'],
     types: data['types']
   };
-  }
+  }*/
 }
 //other','home','front_default'
